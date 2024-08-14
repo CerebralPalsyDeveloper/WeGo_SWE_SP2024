@@ -1,0 +1,14 @@
+image: python:3.8
+
+pipelines:
+  branches:
+    main: 
+    - step:
+       name: Deployment to Production
+       deployment: deployment
+       script:
+         - pipe: atlassian/ssh-run:0.2.2
+           variables:
+             SSH_USER: $USER 
+             SERVER: $SUPPLY_SERVER
+             COMMAND: '/home/team22/supplyScript.sh'
