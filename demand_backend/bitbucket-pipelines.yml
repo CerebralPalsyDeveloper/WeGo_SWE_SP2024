@@ -1,0 +1,14 @@
+image: atlassian/default-image:2
+
+pipelines:
+  branches:
+    main:
+    - step:
+       name: Deployment to Production
+       deployment: Production
+       script:
+         - pipe: atlassian/ssh-run:0.2.2
+           variables:
+             SSH_USER: $USER 
+             SERVER: $DEMAND_SERVER
+             COMMAND: '/home/team22/repos/demand_backend/demandScript.sh'

@@ -1,0 +1,15 @@
+image: atlassian/default-image:2
+
+pipelines:
+  branches:
+    main:
+      - step:
+          name: Build and Deploy to Demand Frontend
+          deployment: Production
+          script:
+            - pipe: atlassian/ssh-run:0.2.2
+              variables:
+                SSH_USER: $USER
+                SERVER: $DEMAND_SERVER
+                COMMAND: '/home/team22/repos/demand_frontend/demandScriptFE.sh'
+
